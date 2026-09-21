@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>حبر — ملاحظات عن الكتابة والقراءة</title>
+<meta name="description" content="مقالات قصيرة عن صناعة الجملة، واختيار الكتب، والأفكار التي تستحق دفترًا صغيرًا.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%92%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;700&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
+<style id="site-css">
+:root {
+  --bg: #F6F7FA;
+  --surface: #E8ECF8;
+  --ink: #111A2E;
+  --muted: #55607A;
+  --line: #D3D9E8;
+  --accent: #2438E0;
+  --hero: #2438E0;
+  --hero-ink: #14208F;
+  --danger: #B42318;
+  --display: 'Reem Kufi', 'Noto Kufi Arabic', 'Segoe UI', Tahoma, sans-serif;
+  --text: 'Noto Naskh Arabic', 'Traditional Arabic', 'Geeza Pro', 'Times New Roman', serif;
+  color-scheme: light;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D1120;
+    --surface: #1A2140;
+    --ink: #E9ECF7;
+    --muted: #9AA4C2;
+    --line: #263052;
+    --accent: #8D9CFF;
+    --hero: #2A3BC8;
+    --danger: #FF8A80;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D1120;
+  --surface: #1A2140;
+  --ink: #E9ECF7;
+  --muted: #9AA4C2;
+  --line: #263052;
+  --accent: #8D9CFF;
+  --hero: #2A3BC8;
+  --danger: #FF8A80;
+  color-scheme: dark;
+}
+html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 4.5rem); }
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--text);
+  font-size: 1.1rem;
+  line-height: 1.9;
+  -webkit-text-size-adjust: 100%;
+}
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.wrap { max-width: 52rem; margin-inline: auto; padding-inline: 1.25rem; }
+.narrow { max-width: 41rem; }
+
+/* header */
+.site-header {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 10;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; min-height: 3.75rem; gap: 1rem; }
+.brand { font-family: var(--display); font-weight: 700; font-size: 1.8rem; line-height: 1; }
+.nav { display: flex; align-items: center; gap: 1.1rem; font-size: 1rem; }
+.nav a, .nav button { color: var(--muted); transition: color .15s; }
+.nav a:hover, .nav button:hover { color: var(--accent); }
+.nav a.nav-write { color: var(--accent); font-weight: 700; }
+.nav button { font: inherit; background: none; border: 0; padding: .25rem 0; cursor: pointer; }
+
+/* hero */
+.hero { background: var(--hero); color: #fff; padding: clamp(3rem, 10vw, 7rem) 0 clamp(3rem, 9vw, 6rem); }
+.hero h1 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(2.7rem, 10vw, 5.8rem);
+  line-height: 1.25;
+  margin: 0 0 1.5rem;
+  max-width: 13em;
+}
+.hero p { max-width: 31rem; margin: 0 0 2rem; font-size: 1.2rem; color: rgba(255,255,255,.9); }
+.btn {
+  display: inline-block;
+  background: #fff;
+  color: var(--hero-ink);
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  padding: .7rem 1.5rem;
+  border-radius: 8px;
+  transition: background .15s;
+}
+.btn:hover { background: #E8ECF8; }
+.hero :focus-visible { outline-color: #fff; }
+
+/* buttons in the page body */
+.btn-solid, .btn-line {
+  display: inline-block;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  border-radius: 8px;
+  padding: .7rem 1.5rem;
+  cursor: pointer;
+  transition: filter .15s, border-color .15s;
+}
+.btn-solid { background: var(--hero); color: #fff; border: 1px solid var(--hero); }
+.btn-solid:hover { filter: brightness(1.15); }
+.btn-line { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+.btn-line:hover { border-color: var(--accent); }
+.btn-line.danger { color: var(--danger); border-color: var(--danger); }
+
+/* list */
+.list-wrap { padding-top: 3rem; padding-bottom: 3rem; }
+.controls { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+.chip {
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: .3rem 1.1rem;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.chip:hover { border-color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.search {
+  font: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: .55rem .9rem;
+  width: 100%;
+  max-width: 17rem;
+}
+.search::placeholder { color: var(--muted); }
+.search:focus { border-color: var(--accent); }
+
+.row { display: block; padding: 1.75rem 0; border-bottom: 1px solid var(--line); }
+.row-title {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.55rem;
+  line-height: 1.5;
+  margin: .5rem 0 .35rem;
+  transition: color .15s;
+}
+.row:first-child .row-title { font-size: clamp(1.8rem, 5vw, 2.3rem); }
+.row:hover .row-title { color: var(--accent); }
+.row-ex { margin: 0; color: var(--muted); max-width: 40rem; }
+.meta { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem 1rem; font-size: .95rem; color: var(--muted); }
+.tag { background: var(--surface); color: var(--ink); border-radius: 999px; padding: 0 .85rem; line-height: 1.7; }
+.empty { padding: 2.5rem 0; color: var(--muted); }
+
+.invite { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 2rem; }
+.invite p { margin: 0; font-family: var(--display); font-weight: 500; font-size: 1.35rem; line-height: 1.5; }
+
+/* article */
+.post { padding-top: 2.5rem; padding-bottom: 3rem; }
+.back { display: inline-block; color: var(--accent); font-size: 1rem; margin-bottom: 1.5rem; }
+.back:hover { text-decoration: underline; }
+.post h1 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(2rem, 7vw, 3.1rem);
+  line-height: 1.4;
+  margin: .75rem 0 2rem;
+}
+.post .body p { font-size: 1.22rem; line-height: 2.1; margin: 0 0 1.5rem; }
+.notice { background: var(--surface); border-radius: 8px; padding: .75rem 1rem; margin: 0 0 1.5rem; font-size: 1rem; }
+.owner { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; margin-top: 2rem; }
+.owner p { margin: 0; color: var(--muted); }
+.more { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.more h2 { font-family: var(--display); font-size: 1.3rem; margin: 0; }
+.more .row:last-child { border-bottom: 0; }
+
+/* write form */
+.write { padding-top: 2.5rem; padding-bottom: 3rem; }
+.write h1 { font-family: var(--display); font-weight: 700; font-size: clamp(1.9rem, 6vw, 2.6rem); line-height: 1.4; margin: .5rem 0 .75rem; }
+.hint { color: var(--muted); margin: 0 0 1.75rem; font-size: 1rem; }
+.field { display: block; margin-bottom: 1.25rem; }
+.field-label { display: block; font-family: var(--display); font-weight: 500; font-size: 1.05rem; margin-bottom: .4rem; }
+.input {
+  font: inherit;
+  font-size: 1.1rem;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: .65rem .9rem;
+  width: 100%;
+}
+.input:focus { border-color: var(--accent); }
+textarea.input { min-height: 18rem; line-height: 2; font-size: 1.15rem; resize: vertical; }
+.note { display: block; color: var(--muted); font-size: .95rem; margin-top: .35rem; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-error { color: var(--danger); font-weight: 500; margin: 0 0 1rem; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; }
+
+/* about + footer */
+.about { background: var(--surface); padding: 3.5rem 0; }
+.about h2 { font-family: var(--display); font-weight: 700; font-size: 1.8rem; margin: 0 0 1rem; scroll-margin-top: 5rem; }
+.about p { max-width: 36rem; margin: 0 0 1rem; }
+footer { padding: 2rem 0; color: var(--muted); font-size: .95rem; }
+footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+footer a:hover { color: var(--accent); }
+
+@media (max-width: 34rem) {
+  body { font-size: 1.05rem; }
+  .post .body p { font-size: 1.14rem; }
+  .brand { font-size: 1.6rem; }
+  .nav { gap: .85rem; font-size: .95rem; }
+  .search { max-width: none; }
+  .pair { grid-template-columns: 1fr; gap: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<script type="application/json" id="posts-data">[{"id":"first-sentence","cat":"كتابة","date":"2026-08-30","title":"لماذا تتعثر الجملة الأولى؟","excerpt":"الصفحة البيضاء لا تخيفنا لأنها فارغة، بل لأننا نطلب من أول جملة أن تفعل كل شيء.","body":["كل من كتب يعرف هذه اللحظة: الفكرة واضحة في الرأس، والصفحة مفتوحة أمامك، لكن الجملة الأولى ترفض أن تخرج. السبب في الغالب أننا نحمّلها أكثر مما تحتمل، فنريدها أن تعلن الموضوع وتشدّ القارئ وتُظهر أسلوبنا كله دفعة واحدة.","جرّب أن تكتب أسوأ جملة ممكنة. لا تهتم بالصياغة ولا بالترتيب، وضع على الصفحة أي شيء يمكنك تعديله لاحقًا. التعديل أسهل بكثير من الإبداع من فراغ، والمسودة الرديئة أنفع من الصفحة الفارغة.","وتذكّر أن القارئ لا يرى مسودتك الأولى أبدًا. ما يصله هو النسخة الأخيرة، وهي نتيجة جولات من الحذف والتبديل وإعادة الترتيب. لذلك ابدأ من أي نقطة، ثم عد إلى بداية النص حين تعرف أين انتهيت.","وإن بقيت عالقًا، اترك الجملة الأولى فارغة وانتقل إلى الفقرة التالية. كثيرًا ما تظهر الافتتاحية الجيدة بعد أن تنتهي من كتابة كل شيء آخر."]},{"id":"slow-reading","cat":"قراءة","date":"2026-08-14","title":"قراءة بطيئة في زمن السرعة","excerpt":"أن تقرأ صفحة واحدة بانتباه كامل خير من عشر صفحات تمرّ أمام عينيك.","body":["نقرأ اليوم كثيرًا ونتذكر قليلًا. تمرّ الشاشة أمامنا بعناوين وملخصات ومقاطع، ونظن أننا اطلعنا على الموضوع، بينما لم نمنح أي نص وقتًا كافيًا ليستقر في الذهن.","القراءة البطيئة لا تعني التباطؤ في كل شيء، بل اختيار نص واحد يستحق الانتباه ثم البقاء معه. توقف عند الجملة التي أعجبتك، وأعدها بصوت خافت، وسجّل في الهامش سبب توقفك.","ستلاحظ بعد أسابيع أن ما علق في ذاكرتك من كتبك هو الصفحات التي بقيت معها طويلًا، لا التي أنهيتها بسرعة لتضيفها إلى قائمة الكتب المقروءة."]},{"id":"editing","cat":"كتابة","date":"2026-07-22","title":"التحرير: أن تحذف ما تحب","excerpt":"أجمل عبارة في مسودتك قد تكون أول ما يجب حذفه، إن كانت لا تخدم النص.","body":["في كل مسودة عبارة تعتز بها لأنك تعبت في صياغتها، أو لأنها أجمل ما كتبت. وفي كثير من الأحيان تكون هذه العبارة نفسها هي التي تعطّل الفقرة.","اسأل عن كل جملة: ماذا يخسر القارئ لو حذفتها؟ إن كان الجواب لا شيء، فاحذفها دون تردد. يمكنك أن تحتفظ بها في ملف جانبي إن كان الفراق صعبًا، وستجد أنك نادرًا ما تعود إليه.","التحرير الجيد لا يجعل النص أقصر فحسب، بل يجعله أوضح. حين تُزال الزوائد يظهر ما أردت قوله فعلًا."]},{"id":"next-book","cat":"قراءة","date":"2026-07-05","title":"كيف تختار كتابك القادم؟","excerpt":"طريقة بسيطة تجنّبك قوائم الأكثر مبيعًا وتقرّبك من كتاب يناسبك فعلًا.","body":["أسهل طريقة لاختيار كتاب هي أن تسأل: ما السؤال الذي يشغلني هذه الأيام؟ قد يكون عن المدن، أو عن الذاكرة، أو عن طريقة عمل الأشياء. الكتب التي تجيب عن أسئلتك تُقرأ بشغف لا بواجب.","بعد ذلك انظر إلى مراجع الكتاب الذي أعجبك. المؤلفون الجيدون يذكرون من قرؤوا، وهكذا تصنع لنفسك خريطة قراءة شخصية لا تعتمد على ترشيحات الآخرين.","وأخيرًا، اقرأ أول عشر صفحات قبل أن تقرر. إن لم يشدك الكتاب فيها فلا بأس بتركه، فالوقت أثمن من أن نقضيه مع كتاب لا نحبه."]},{"id":"notebook","cat":"أفكار","date":"2026-06-18","title":"دفتر صغير في الجيب","excerpt":"الأفكار الجيدة تزورنا في أوقات غير مناسبة، ولا تنتظر أن نجد قلمًا.","body":["معظم أفكارنا تأتي ونحن في الطريق أو في الطابور أو على وشك النوم، ثم تختفي قبل أن نصل إلى مكتبنا. دفتر صغير في الجيب يحل هذه المشكلة بأبسط شكل.","لا تحاول أن تكتب جملًا كاملة. كلمتان أو ثلاث تكفيان لتعيدا إليك الفكرة كلها لاحقًا. والأهم أن تراجع الدفتر مرة كل أسبوع، فالملاحظة التي لا تُقرأ مرة ثانية تبقى مجرد أثر.","وبعد مدة سيتحول الدفتر إلى مخزن للمواضيع التي ستكتب عنها، وستجد أن الأفكار المتناثرة تتلاقى في خيط واحد لم تكن تراه."]},{"id":"boredom","cat":"أفكار","date":"2026-05-27","title":"الملل مساحة نحتاجها","excerpt":"حين نملأ كل لحظة فراغ بالهاتف، نفقد الوقت الذي كانت تنضج فيه أفكارنا.","body":["كان الانتظار قديمًا يعني أن نحدّق في الفراغ، وأن يذهب العقل إلى حيث يشاء. اليوم نملأ كل دقيقة فارغة بشاشة صغيرة، ولا نترك للعقل فرصة ليتجول.","الأفكار التي تحتاج إلى وقت لا تنضج تحت الضوء المستمر. تنضج في المشي الطويل، وفي غسل الأطباق، وفي النظر من نافذة القطار.","جرّب أن تترك الهاتف في جيبك في أول انتظار غدًا. لن يحدث شيء مثير، لكن قد تجد أن فكرة معلّقة منذ أسبوع وجدت أخيرًا مكانها."]}]</script>
+<script id="site-js">(function () {
+  'use strict';
+
+  /* Canonical page source lives here so a new version can be built from state. */
+  var HEAD = "<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, viewport-fit=cover\">\n<meta name=\"color-scheme\" content=\"light dark\">\n<title>حبر — ملاحظات عن الكتابة والقراءة</title>\n<meta name=\"description\" content=\"مقالات قصيرة عن صناعة الجملة، واختيار الكتب، والأفكار التي تستحق دفترًا صغيرًا.\">\n<link rel=\"icon\" href=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%92%EF%B8%8F%3C/text%3E%3C/svg%3E\">\n<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n<link href=\"https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;700&family=Reem+Kufi:wght@500;700&display=swap\" rel=\"stylesheet\">";
+  var CHROME =
+    '<header class="site-header"><div class="wrap">' +
+      '<a class="brand" href="#/">حبر</a>' +
+      '<nav class="nav" aria-label="التنقل الرئيسي">' +
+        '<a href="#/articles">المقالات</a>' +
+        '<a class="nav-write" id="nav-write" href="#/write" hidden>اكتب مقالًا</a>' +
+        '<button type="button" id="theme-btn">الوضع الداكن</button>' +
+      '</nav>' +
+    '</div></header>' +
+    '<main id="app"></main>' +
+    '<footer><div class="wrap"><span>حبر © 2026</span><a href="#/about">عن المدونة</a></div></footer>';
+
+  function buildDoc(list) {
+    var json = JSON.stringify(list).replace(/</g, '\\u003c');
+    var css = document.getElementById('site-css').textContent;
+    var js = document.getElementById('site-js').textContent;
+    return '<!DOCTYPE html>\n<html lang="ar" dir="rtl">\n<head>\n' + HEAD +
+      '\n<style id="site-css">' + css + '</style>\n</head>\n<body>\n' +
+      '<script type="application/json" id="posts-data">' + json + '<\/script>\n' +
+      '<script id="site-js">' + js + '<\/script>\n</body>\n</html>\n';
+  }
+
+  /* ---------- state ---------- */
+  var cats = ['الكل', 'كتابة', 'قراءة', 'أفكار'];
+  var writeCats = cats.slice(1);
+  var state = { cat: 'الكل', q: '' };
+  var SITE_TITLE = 'حبر — ملاحظات عن الكتابة والقراءة';
+  var DRAFT_KEY = 'hibr-draft';
+  var ownerMode = false;
+  try { ownerMode = localStorage.getItem('hibr-owner') === '1'; } catch (e) {}
+  var flash = '';
+
+  function validPost(p) {
+    return p && typeof p.id === 'string' && typeof p.title === 'string' && Array.isArray(p.body);
+  }
+  var posts = [];
+  try { posts = JSON.parse(document.getElementById('posts-data').textContent); } catch (e) { posts = []; }
+  if (!Array.isArray(posts)) posts = [];
+  posts = posts.filter(validPost);
+
+  document.body.insertAdjacentHTML('afterbegin', CHROME);
+  var app = document.getElementById('app');
+
+  /* ---------- helpers ---------- */
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+  function findPost(id) {
+    for (var i = 0; i < posts.length; i++) if (posts[i].id === id) return posts[i];
+    return null;
+  }
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function today() {
+    var d = new Date();
+    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+  }
+  function parseBody(text) {
+    return text.split(/\n\s*\n/).map(function (s) {
+      return s.replace(/\s*\n\s*/g, ' ').trim();
+    }).filter(Boolean);
+  }
+  function makeExcerpt(paras) {
+    var t = paras[0] || '';
+    if (t.length <= 120) return t;
+    var cut = t.slice(0, 120);
+    var i = cut.lastIndexOf(' ');
+    if (i > 60) cut = cut.slice(0, i);
+    return cut + '…';
+  }
+  function fmtDate(d) {
+    try {
+      return new Date(d + 'T00:00:00Z').toLocaleDateString('ar-u-nu-latn', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+    } catch (e) { return d; }
+  }
+  function readLabel(p) {
+    var words = p.body.join(' ').split(/\s+/).length;
+    var n = Math.max(1, Math.round(words / 130));
+    if (n === 1) return 'قراءة في دقيقة واحدة';
+    if (n === 2) return 'قراءة في دقيقتين';
+    if (n <= 10) return 'قراءة في ' + n + ' دقائق';
+    return 'قراءة في ' + n + ' دقيقة';
+  }
+  function metaHTML(p) {
+    var by = p.author ? '<span>بقلم ' + esc(p.author) + '</span>' : '';
+    return '<span class="meta"><span class="tag">' + esc(p.cat) + '</span><time datetime="' + esc(p.date) + '">' + fmtDate(p.date) + '</time><span>' + readLabel(p) + '</span>' + by + '</span>';
+  }
+  function rowHTML(p) {
+    return '<a class="row" href="#/post/' + encodeURIComponent(p.id) + '">' + metaHTML(p) +
+      '<h3 class="row-title">' + esc(p.title) + '</h3><p class="row-ex">' + esc(p.excerpt || '') + '</p></a>';
+  }
+  function syncNav() {
+    var el = document.getElementById('nav-write');
+    if (el) el.hidden = !ownerMode;
+  }
+
+  /* ---------- saving: build the updated page and download it ---------- */
+  function noticeHTML() {
+    var n = flash ? '<p class="notice">' + esc(flash) + '</p>' : '';
+    flash = '';
+    return n;
+  }
+  function publishPosts(next) {
+    return new Promise(function (resolve, reject) {
+      try {
+        var blob = new Blob([buildDoc(next)], { type: 'text/html;charset=utf-8' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'index.html';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+        flash = 'تم تنزيل ملف index.html المحدَّث. ارفعه إلى استضافتك بدل الملف القديم ليراه الزوّار.';
+        resolve();
+      } catch (e) { reject(e); }
+    });
+  }
+  function errorMessage() { return 'تعذّر تجهيز الملف. أعد المحاولة.'; }
+
+  /* ---------- home ---------- */
+  function renderHome(scrollTarget) {
+    document.title = SITE_TITLE;
+    var latest = posts[0];
+    var chips = cats.map(function (c) {
+      return '<button type="button" class="chip" data-cat="' + esc(c) + '" aria-pressed="' + (state.cat === c) + '">' + esc(c) + '</button>';
+    }).join('');
+    var heroBtn = latest
+      ? '<a class="btn" href="#/post/' + encodeURIComponent(latest.id) + '">اقرأ أحدث مقال</a>'
+      : (ownerMode ? '<a class="btn" href="#/write">اكتب أول مقال</a>' : '');
+    var invite = ownerMode
+      ? '<div class="invite"><p>عندك فكرة تستحق مقالًا؟</p><a class="btn-solid" href="#/write">اكتب مقالًا</a></div>'
+      : '';
+    app.innerHTML =
+      '<section class="hero"><div class="wrap">' +
+        '<h1>ملاحظات عن الكتابة والقراءة</h1>' +
+        '<p>مقالات قصيرة عن صناعة الجملة، واختيار الكتب، والأفكار التي تستحق دفترًا صغيرًا.</p>' +
+        heroBtn +
+      '</div></section>' +
+      '<section class="wrap list-wrap" id="articles">' +
+        noticeHTML() +
+        '<h2 class="sr">المقالات</h2>' +
+        '<div class="controls">' +
+          '<div class="chips" role="group" aria-label="تصفية حسب القسم">' + chips + '</div>' +
+          '<label class="sr" for="q">ابحث في المقالات</label>' +
+          '<input class="search" id="q" type="search" placeholder="ابحث في المقالات" autocomplete="off" value="' + esc(state.q) + '">' +
+        '</div>' +
+        '<div id="list" aria-live="polite"></div>' +
+        invite +
+      '</section>' +
+      '<section class="about" id="about"><div class="wrap">' +
+        '<h2>عن المدونة</h2>' +
+        '<p>حبر مساحة هادئة لتدوين ما نتعلمه أثناء الكتابة والقراءة. المقالات قصيرة عمدًا، وكل مقال يقدّم فكرة واحدة يمكن تجربتها في اليوم نفسه.</p>' +
+        '<p>لا نوافذ منبثقة ولا زحام؛ نص واضح وخط مريح وصفحة تُقرأ في دقائق.</p>' +
+      '</div></section>';
+
+    var list = document.getElementById('list');
+    function update() {
+      var q = state.q.trim();
+      var out = posts.filter(function (p) {
+        var okCat = state.cat === 'الكل' || p.cat === state.cat;
+        var okQ = !q || (p.title + ' ' + (p.excerpt || '') + ' ' + p.body.join(' ')).indexOf(q) !== -1;
+        return okCat && okQ;
+      });
+      if (out.length) list.innerHTML = out.map(rowHTML).join('');
+      else if (!posts.length) list.innerHTML = '<p class="empty">لا توجد مقالات بعد.</p>';
+      else list.innerHTML = '<p class="empty">لا توجد مقالات مطابقة. جرّب كلمة أخرى أو اختر «الكل».</p>';
+    }
+    update();
+
+    app.querySelectorAll('.chip').forEach(function (b) {
+      b.addEventListener('click', function () {
+        state.cat = b.getAttribute('data-cat');
+        app.querySelectorAll('.chip').forEach(function (x) {
+          x.setAttribute('aria-pressed', String(x === b));
+        });
+        update();
+      });
+    });
+    document.getElementById('q').addEventListener('input', function (e) {
+      state.q = e.target.value;
+      update();
+    });
+
+    var target = scrollTarget && document.getElementById(scrollTarget);
+    if (target) target.scrollIntoView(); else window.scrollTo(0, 0);
+  }
+
+  /* ---------- article ---------- */
+  function renderPost(id) {
+    var i = -1;
+    for (var k = 0; k < posts.length; k++) if (posts[k].id === id) { i = k; break; }
+    if (i === -1) { renderHome(); return; }
+    var p = posts[i];
+    document.title = p.title + ' — حبر';
+    var more = [];
+    for (var j = 1; j <= 2 && j < posts.length; j++) more.push(posts[(i + j) % posts.length]);
+
+    var owner = ownerMode
+      ? '<p class="form-error" id="post-err" role="alert" hidden></p>' +
+        '<div class="owner" id="owner"><a class="btn-line" href="#/write/' + encodeURIComponent(p.id) + '">تعديل المقال</a>' +
+        '<button type="button" class="btn-line danger" id="del">حذف المقال</button></div>'
+      : '';
+
+    app.innerHTML =
+      '<article class="wrap narrow post">' +
+        '<a class="back" href="#/articles">العودة إلى المقالات</a>' +
+        noticeHTML() +
+        metaHTML(p) +
+        '<h1>' + esc(p.title) + '</h1>' +
+        '<div class="body">' + p.body.map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('') + '</div>' +
+        owner +
+        (more.length ? '<section class="more"><h2>اقرأ أيضًا</h2>' + more.map(rowHTML).join('') + '</section>' : '') +
+      '</article>';
+    window.scrollTo(0, 0);
+
+    var del = document.getElementById('del');
+    if (del) {
+      del.addEventListener('click', function () {
+        var box = document.getElementById('owner');
+        box.innerHTML =
+          '<p>حذف هذا المقال نهائيًا؟</p>' +
+          '<button type="button" class="btn-line danger" id="del-yes">نعم، احذف المقال</button>' +
+          '<button type="button" class="btn-line" id="del-no">تراجع</button>';
+        var no = document.getElementById('del-no');
+        var yes = document.getElementById('del-yes');
+        no.addEventListener('click', function () { renderPost(id); });
+        yes.addEventListener('click', async function () {
+          var errEl = document.getElementById('post-err');
+          yes.disabled = true; no.disabled = true;
+          yes.textContent = 'جارٍ الحذف…';
+          var next = posts.filter(function (x) { return x.id !== id; });
+          try {
+            await publishPosts(next);
+            posts = next;
+            location.hash = '#/articles';
+          } catch (e) {
+            var msg = errorMessage(e);
+            if (msg) {
+              renderPost(id);
+              var again = document.getElementById('post-err');
+              again.textContent = msg;
+              again.hidden = false;
+            }
+          }
+        });
+        no.focus();
+      });
+    }
+  }
+
+  /* ---------- write / edit ---------- */
+  function renderWrite(editId) {
+    document.title = (editId ? 'تعديل المقال' : 'اكتب مقالًا') + ' — حبر';
+    if (!ownerMode) {
+      ownerMode = true;
+      try { localStorage.setItem('hibr-owner', '1'); } catch (e) {}
+      syncNav();
+    }
+
+    var editing = editId ? findPost(editId) : null;
+    if (editId && !editing) { location.hash = '#/write'; return; }
+
+    var draft = null;
+    if (!editing) {
+      try { draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null'); } catch (e) { draft = null; }
+    }
+    var opts = writeCats.map(function (c) { return '<option value="' + esc(c) + '">' + esc(c) + '</option>'; }).join('');
+    var cancelHref = editing ? '#/post/' + encodeURIComponent(editing.id) : '#/articles';
+    var saveLabel = editing ? 'احفظ التعديلات' : 'احفظ المقال';
+
+    app.innerHTML =
+      '<section class="wrap narrow write">' +
+        '<a class="back" href="' + cancelHref + '">' + (editing ? 'العودة إلى المقال' : 'العودة إلى المقالات') + '</a>' +
+        '<h1>' + (editing ? 'تعديل المقال' : 'اكتب مقالك') + '</h1>' +
+        '<p class="hint">بعد الحفظ يُنزَّل ملف index.html المحدَّث. ارفعه إلى استضافتك بدل الملف القديم ليظهر المقال للزوّار.</p>' +
+        '<label class="field"><span class="field-label">عنوان المقال</span>' +
+          '<input class="input" id="f-title" type="text" maxlength="120" autocomplete="off"></label>' +
+        '<div class="pair">' +
+          '<label class="field"><span class="field-label">القسم</span><select class="input" id="f-cat">' + opts + '</select></label>' +
+          '<label class="field"><span class="field-label">اسمك (اختياري)</span>' +
+            '<input class="input" id="f-author" type="text" maxlength="40" autocomplete="name"></label>' +
+        '</div>' +
+        '<label class="field"><span class="field-label">نص المقال</span>' +
+          '<textarea class="input" id="f-text" aria-describedby="f-note"></textarea>' +
+          '<span class="note" id="f-note">افصل بين الفقرات بسطر فارغ.</span></label>' +
+        '<p class="form-error" id="err" role="alert" hidden></p>' +
+        '<div class="actions">' +
+          '<button type="button" class="btn-solid" id="save">' + saveLabel + '</button>' +
+          '<a class="btn-line" id="cancel" href="' + cancelHref + '">إلغاء</a>' +
+        '</div>' +
+      '</section>';
+    window.scrollTo(0, 0);
+
+    var fTitle = document.getElementById('f-title');
+    var fCat = document.getElementById('f-cat');
+    var fAuthor = document.getElementById('f-author');
+    var fText = document.getElementById('f-text');
+    var err = document.getElementById('err');
+    var saveBtn = document.getElementById('save');
+
+    if (editing) {
+      fTitle.value = editing.title;
+      if (writeCats.indexOf(editing.cat) !== -1) fCat.value = editing.cat;
+      fAuthor.value = editing.author || '';
+      fText.value = editing.body.join('\n\n');
+    } else if (draft && typeof draft === 'object') {
+      fTitle.value = draft.title || '';
+      if (writeCats.indexOf(draft.cat) !== -1) fCat.value = draft.cat;
+      fAuthor.value = draft.author || '';
+      fText.value = draft.text || '';
+    }
+
+    function saveDraft() {
+      if (editing) return;
+      try {
+        localStorage.setItem(DRAFT_KEY, JSON.stringify({ title: fTitle.value, cat: fCat.value, author: fAuthor.value, text: fText.value }));
+      } catch (e) {}
+    }
+    [fTitle, fCat, fAuthor, fText].forEach(function (el) {
+      el.addEventListener('input', saveDraft);
+      el.addEventListener('change', saveDraft);
+    });
+
+    function showError(msg, el) {
+      err.textContent = msg;
+      err.hidden = false;
+      if (el) el.focus();
+    }
+    function setBusy(on) {
+      saveBtn.disabled = on;
+      saveBtn.textContent = on ? 'جارٍ التجهيز…' : saveLabel;
+    }
+
+    saveBtn.addEventListener('click', async function () {
+      var title = fTitle.value.trim();
+      var paras = parseBody(fText.value);
+      if (!title) { showError('اكتب عنوانًا للمقال.', fTitle); return; }
+      if (paras.join(' ').length < 30) { showError('النص قصير جدًا. اكتب فقرة واحدة على الأقل.', fText); return; }
+      err.hidden = true;
+
+      var author = fAuthor.value.trim();
+      var cat = fCat.value;
+      var excerpt = makeExcerpt(paras);
+      var next, id;
+      if (editing) {
+        id = editing.id;
+        next = posts.map(function (x) {
+          return x.id === id ? { id: id, cat: cat, date: x.date, title: title, author: author, excerpt: excerpt, body: paras } : x;
+        });
+      } else {
+        id = 'p' + Date.now().toString(36);
+        next = [{ id: id, cat: cat, date: today(), title: title, author: author, excerpt: excerpt, body: paras }].concat(posts);
+      }
+
+      setBusy(true);
+      try { if (!editing) localStorage.removeItem(DRAFT_KEY); } catch (e) {}
+      try {
+        await publishPosts(next);
+        posts = next;
+        location.hash = '#/post/' + encodeURIComponent(id);
+      } catch (e) {
+        saveDraft();
+        var msg = errorMessage(e);
+        if (msg) { setBusy(false); showError(msg); }
+      }
+    });
+  }
+
+  /* ---------- routing ---------- */
+  function route() {
+    var h = location.hash || '#/';
+    if (h.indexOf('#/post/') === 0) renderPost(decodeURIComponent(h.slice(7)));
+    else if (h.indexOf('#/write/') === 0) renderWrite(decodeURIComponent(h.slice(8)));
+    else if (h === '#/write') renderWrite();
+    else if (h === '#/about') renderHome('about');
+    else if (h === '#/articles') renderHome('articles');
+    else renderHome();
+  }
+  window.addEventListener('hashchange', route);
+  route();
+
+  syncNav();
+
+  /* ---------- theme ---------- */
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-btn');
+  function isDark() {
+    var t = root.getAttribute('data-theme');
+    if (t) return t === 'dark';
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function syncBtn() { btn.textContent = isDark() ? 'الوضع الفاتح' : 'الوضع الداكن'; }
+  try {
+    var saved = localStorage.getItem('hibr-theme');
+    if (saved === 'dark' || saved === 'light') root.setAttribute('data-theme', saved);
+  } catch (e) {}
+  syncBtn();
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('hibr-theme', next); } catch (e) {}
+    syncBtn();
+  });
+})();
+</script>
+</body>
+</html>
