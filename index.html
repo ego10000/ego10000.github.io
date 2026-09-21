@@ -352,8 +352,7 @@ footer a:hover { color: var(--accent); }
     var n = flash ? '<p class="notice">' + esc(flash) + '</p>' : '';
     flash = '';
     return n;
-  }
-  function publishPosts(next) {
+                                                                            }  function publishPosts(next) {
     return new Promise(function (resolve, reject) {
       try {
         var blob = new Blob([buildDoc(next)], { type: 'text/html;charset=utf-8' });
@@ -369,7 +368,41 @@ footer a:hover { color: var(--accent); }
         resolve();
       } catch (e) { reject(e); }
     });
-  }
+  }async function publishPosts(next) {
+  var token = localStorage.getItem('gh_token') || prompt('أدخل رمز GitHub Personal Access Token:');
+  if (!token) throw new Error('يلزم أدخل الرمز للنشر');
+  localStorage.setItem('gh_token', token);
+
+  var repo = 'ego10000/ego10000.github.io';
+  var path = 'index.html';
+  var url = 'https://api.github.com/repos/' + repo + '/contents/' + path;
+
+  var res = await fetch(url, { headers: { 'Authorization': 'token ' + token } });
+  if (!res.ok) throw new Error('تعذر الوصول للمستودع');
+  var fileData = await res.json();
+
+  // تحديث مصفوفة المقالات داخل الكود
+  var content = decodeURIComponent(escape(atob(fileData.content)));
+  var updatedContent = content.replace(/var posts = \[[\s\S]*?\];/, 'var posts = ' + JSON.stringify(next) + ';');
+
+  var body = {
+    message: 'إضافة مقال جديد عبر الموقع',
+    content: btoa(unescape(encodeURIComponent(updatedContent))),
+    sha: fileData.sha
+  };
+
+  var putRes = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Authorization': 'token ' + token,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+
+  if (!putRes.ok) throw new Error('فشل نشر المقال عبر GitHub API');
+}
+
   function errorMessage() { return 'تعذّر تجهيز الملف. أعد المحاولة.'; }
 
   /* ---------- home ---------- */
